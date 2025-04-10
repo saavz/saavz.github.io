@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tienda de Arte La Musa</title>
+  <link rel="stylesheet" href="style.css"/>
+ 
+
+</head>
+<body>
+  <header>
+    <h1>Tienda de Arte La Musa</h1>
+    <nav>
+      <button onclick="toggleCart()">🛒 Ver Carrito</button>
+    </nav>
+  </header>
+
+  <main>
+    <section id="productos">
+      <h2>Productos</h2>
+      <div class="categoria">
+        <h3>Pinturas</h3>
+        <div class="producto" data-nombre="Pintura Abstracta" data-precio="50000">
+          <img src="abstracta.jpg" alt="Pintura Abstracta" class="image"/>
+          <p>Pintura Abstracta - $50.000</p>
+          <p>Famosa pintura abstracta que resalta el rostro.</p>
+          <button onclick="agregarAlCarrito(this)">Agregar</button>
+        </div>
+        <div class="producto" data-nombre="Pintura Realista" data-precio="75000">
+          <img src="Pierre-Joseph-Proudhon-et-ses-enfants-en-1853-Petit-Palais-scaled.webp" alt="Pintura Realista" class="image"/>
+          <p>Pintura Realista - $75.000</p>
+          <p>Famosa pintura realista sobre el realismo.</p>
+          <button onclick="agregarAlCarrito(this)">Agregar</button>
+        </div>
+      </div>
+
+      <div class="categoria">
+        <h3>Esculturas</h3>
+        <div class="producto" data-nombre="Escultura Moderna" data-precio="120000">
+          <img src="messi.jpg" alt="Escultura Moderna" class="image"/>
+          <p>Escultura moderna del famoso jugador argentino Lionel Messi.</p>
+          <p>Escultura Moderna - $120.000</p>
+          <button onclick="agregarAlCarrito(this)">Agregar</button>
+        </div>
+      </div>
+
+      <div class="categoria">
+        <h3>Grabados</h3>
+        <div class="producto" data-nombre="Grabado Clásico" data-precio="30000">
+          <img src="vikingos.jpg" alt="Grabado Clásico" class="image"/>
+          <p>Grabado Clásico - $30.000</p>
+          <p>Grabado clásico del barco drakkar utilizado por los Vikingos.</p>
+          <button onclick="agregarAlCarrito(this)">Agregar</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="carrito" class="oculto">
+      <h2>Carrito de Compras</h2>
+      <ul id="lista-carrito"></ul>
+      <p>Total: $<span id="total">0</span></p>
+      <button onclick="mostrarPago()">Ir a Pagar</button>
+    </section>
+
+    <section id="pago" class="oculto">
+      <h2>Pago Electrónico (Simulado)</h2>
+      <form onsubmit="confirmarPago(event)">
+        <input type="text" placeholder="Nombre en la tarjeta" required />
+        <input type="text" placeholder="Número de tarjeta" required />
+        <input type="text" placeholder="Vencimiento (MM/AA)" required />
+        <input type="text" placeholder="CVV" required />
+        <button type="submit">Pagar</button>
+      </form>
+    </section>
+
+    <section id="confirmacion" class="oculto">
+      <h2>✅ ¡Pago realizado con éxito!</h2>
+      <p>Gracias por comprar en La Musa.</p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

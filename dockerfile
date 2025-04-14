@@ -1,47 +1,21 @@
-# Evitar prompts interactivos durante la instalación
+# Usa una imagen oficial de Apache HTTP Server
+FROM httpd:latest
 
-ENV DEBIAN_FRONTEND=noninteractive
+# Instala Git para poder clonar el repositorio
+# Actualiza la lista de paquetes, instala git y limpia la caché de apt
+RUN apt-get update && apt-get install -y git && \
+    rm -rf /var/lib/apt/lists/*
 
+# Limpia el directorio de contenido web por defecto de Apache
+RUN rm -rf /usr/local/apache2/htdocs/*
 
+# Clona tu repositorio desde GitHub al directorio web de Apache
+# Asegúrate que la URL sea la correcta para tu proyecto Solemne1
+RUN git clone https://github.com/saavz/saavz.github.io.git /usr/local/apache2/htdocs/
 
-# Instalar Apache, MySQL, PHP y git
-
-RUN apt-get update && apt-get install -y \
-
-  apache2 \
-
-  mysql-server \
-
-  php \
-
-  libapache2-mod-php \
-
-  php-mysql \
-
-  git
-
-
-
-# Clonar tu repositorio (ajustado para tu proyecto)
-
-RUN git clone https://github.com/saavz/saavz.github.io.git /tmp/repo
-
-
-
-# Mover solo la carpeta con la web al directorio de Apache
-
-RUN rm -rf /var/www/html && \
-
-  mv /tmp/repo/cafeteria-don-gato/public /var/www/html
-
-
-
-# Exponer el puerto 80
-
+# Expone el puerto 80 para el tráfico web
 EXPOSE 80
 
-
-
-# Iniciar Apache y MySQL al arrancar el contenedor
-
-CMD service mysql start && apache2ctl -D FOREGROUND
+# Inicia Apache en primer plano (este es el comando por defecto de la imagen base httpd)
+# Se incluye para ser explícito, siguiendo el estilo de tu ejemplo.
+CMD ["httpd-foreground"]
